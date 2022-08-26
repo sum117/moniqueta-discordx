@@ -1,26 +1,5 @@
 import { On, Discord, ArgsOf, Guard, GuardFunction } from 'discordx';
-import { CardEmbed } from '../../components';
-
-const testCard = {
-  name: 'Teste',
-  personality: 'Teste',
-  gender: 'masculino',
-  appearance: 'Teste',
-  avatar: 'https://i.imgur.com/mLXc7NB.jpeg',
-  sum: 'austera',
-  phantom: 'azul',
-  inCombat: false,
-  kills: 0,
-  exp: 0,
-  level: 1,
-  expCache: 0,
-  attributePoints: 0,
-  skills: {},
-  mochila: {},
-  equipamentos: {},
-  armas: {},
-};
-
+import { CharEmbed } from '../../components';
 const isOwner: GuardFunction<ArgsOf<'messageCreate'>> = async (
   [message],
   _client,
@@ -34,8 +13,8 @@ const isOwner: GuardFunction<ArgsOf<'messageCreate'>> = async (
 export class PlayCard {
   @On({ event: 'messageCreate' })
   @Guard(isOwner)
-  createPost([message]: ArgsOf<'messageCreate'>) {
-    const embed = new CardEmbed(message, testCard).profile();
+  async createPost([message]: ArgsOf<'messageCreate'>) {
+    const embed = await new CharEmbed(message).profile();
 
     return message.reply({ embeds: [embed] });
   }
