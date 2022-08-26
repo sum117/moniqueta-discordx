@@ -60,6 +60,7 @@ export class CharEmbed extends EmbedBuilder {
   }
   public async post() {
     await this._fetch();
+    if (this.message.content.length < 1) return this;
     this.setDescription(this.message.content);
     return this;
   }
