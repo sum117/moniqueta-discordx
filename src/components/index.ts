@@ -1,1 +1,1 @@
-export { CharEmbed } from './CardEmbed';
+export { CharEmbed } from './CardEmbed.js';

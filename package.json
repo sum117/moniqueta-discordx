@@ -11,7 +11,8 @@
     "dev": "ts-node-esm src/main.ts",
     "start": "node build/main.js",
     "watch": "nodemon --exec ts-node-esm src/main.ts",
-    "prisma": "npx prisma migrate dev --name init"
+    "prisma": "npx prisma migrate dev --name init",
+    "update": "npx npm-check-updates -u"
   },
   "dependencies": {
     "@discordx/importer": "^1.1.10",

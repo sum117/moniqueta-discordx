@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 import type { Message } from 'discord.js';
-import { prisma } from '../../prisma/prisma';
+import { prisma } from '../../prisma/prisma.js';
 
 export const sumAssets = {
   austera: { color: 10517508, emoji: '<:Austeros:982077481702027344>' },
@@ -32,8 +32,14 @@ export class CharEmbed extends EmbedBuilder {
     const user = await this._fetch();
     const char = user?.chosenChar;
     this.setTitle(`Exibindo perfil de ${char?.name}`).addFields(
-      { name: 'Personalidade', value: char?.personality ?? 'Valor Ausente' },
-      { name: 'Aparência', value: char?.appearance ?? 'Valor Ausente' },
+      {
+        name: 'Personalidade',
+        value: char?.personality.slice(0, 1024) ?? 'Valor Ausente',
+      },
+      {
+        name: 'Aparência',
+        value: char?.appearance.slice(0, 1024) ?? 'Valor Ausente',
+      },
       {
         name: 'Level',
         value: char?.level.toString() ?? 'Valor Ausente',
