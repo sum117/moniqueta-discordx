@@ -57,10 +57,10 @@ export class CharEmbed extends EmbedBuilder {
     this.setDescription(this.message.content);
     return this;
   }
-  private async _fetch() {
+  private async _fetch(id = this.message.author.id) {
     const user = await prisma.user.findUnique({
       where: {
-        id: '969062359442280548',
+        id: id,
       },
       include: {
         chosenChar: {
